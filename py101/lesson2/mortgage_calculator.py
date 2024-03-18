@@ -21,7 +21,7 @@ def is_zero_or_less(number_str):
 def is_less_than_zero(number_str):
     if float(number_str) < 0:
         return True
-    
+
     return False
 
 def invalid_answer(string):
@@ -57,20 +57,20 @@ def get_answer():
 
     return answer
 
-def calculate_monthly_payment(principal, apr, loan_duration):
-    principal = float(principal)
-    monthly_rate = (float(apr) / 100) / 12
-    months = float(loan_duration) * 12
+def calculate_monthly_payment(principal_str, apr_str, loan_duration_str):
+    amount = float(principal_str)
+    monthly_rate = (float(apr_str) / 100) / 12
+    months = float(loan_duration_str) * 12
 
     if monthly_rate:
-        monthly_payment = principal * \
+        payment = amount * \
             (monthly_rate / (1 - (1 + monthly_rate) ** (-months)))
     else:
-        monthly_payment = principal / months
+        payment = amount / months
 
-    monthly_payment=round(monthly_payment, 2)
+    payment=round(payment, 2)
 
-    return monthly_payment
+    return payment
 
 def display_monthly_payment():
     message(MESSAGES['monthly_payment'].format(payment=monthly_payment))
@@ -91,8 +91,8 @@ while True:
 
     display_monthly_payment()
 
-    answer = get_answer()
+    play_again = get_answer()
 
-    if answer[0].lower() == 'n':
+    if play_again[0].lower() == 'n':
         os.system('clear')
         break

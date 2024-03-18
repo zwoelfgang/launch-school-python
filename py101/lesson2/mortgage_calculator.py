@@ -1,3 +1,4 @@
+import os
 import json
 
 def message(text):
@@ -25,33 +26,27 @@ def invalid_answer(string):
 
     return True
 
-with open('mortgage_calculator_messages.json', 'r') as file:
-    MESSAGES = json.load(file)
+def get_number(string):
+    message(MESSAGES[string])
+    number = input(MESSAGES['prompt'])
 
-message(MESSAGES['welcome'])
-
-while True:
-    message(MESSAGES['principal'])
-    principal = input(MESSAGES['prompt'])
-
-    while invalid_number(principal) or is_zero_or_less(principal):
+    while invalid_number(number) or is_zero_or_less(number):
         message(MESSAGES['invalid_number'])
-        principal = input(MESSAGES['prompt'])
+        number = input(MESSAGES['prompt'])
 
-    message(MESSAGES['apr'])
-    apr = input(MESSAGES['prompt'])
+    return number
 
-    while invalid_number(apr) or is_zero_or_less(apr):
-        message(MESSAGES['invalid_number'])
-        apr = input(MESSAGES['prompt'])
+def get_answer():
+    message(MESSAGES['try_again'])
+    answer = input(MESSAGES['prompt'])
 
-    message(MESSAGES['loan_duration'])
-    loan_duration = input(MESSAGES['prompt'])
+    while invalid_answer(answer):
+        message(MESSAGES['invalid_answer'])
+        answer = input(MESSAGES['prompt'])
 
-    while invalid_number(loan_duration) or is_zero_or_less(loan_duration):
-        message(MESSAGES['invalid_number'])
-        loan_duration = input(MESSAGES['prompt'])
+    return answer
 
+def calculate_monthly_payment(principal, apr, loan_duration):
     principal = float(principal)
     monthly_rate = (float(apr) / 100) / 12
     months = float(loan_duration) * 12
@@ -60,14 +55,29 @@ while True:
 
     monthly_payment=round(monthly_payment, 2)
 
+    return monthly_payment
+
+def display_monthly_payment():
     message(MESSAGES['monthly_payment'].format(payment=monthly_payment))
 
-    message(MESSAGES['try_again'])
-    answer = input(MESSAGES['prompt'])
+with open('mortgage_calculator_messages.json', 'r') as file:
+    MESSAGES = json.load(file)
 
-    while invalid_answer(answer):
-        message(MESSAGES['invalid_answer'])
-        answer = input(MESSAGES['prompt'])
+message(MESSAGES['welcome'])
+
+while True:
+    os.system('clear')
+
+    principal = get_number('principal')
+    apr = get_number('apr')
+    loan_duration = get_number('loan_duration')
+
+    monthly_payment = calculate_monthly_payment(principal, apr, loan_duration)
+
+    display_monthly_payment()
+
+    answer = get_answer()
 
     if answer[0].lower() == 'n':
+        os.system('clear')
         break

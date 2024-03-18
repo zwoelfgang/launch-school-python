@@ -1,0 +1,11 @@
+{
+"welcome": "Welcome to Calculator!",
+"first_number": "What's the first number?",
+"second_number": "What's the second number?",
+"invalid_number": "Invalid number. Please try again by entering an integer.",
+"operation_type": "What operation would you like to perform?\n1) Add 2) Subtract 3) Multiply 4) Divide",
+"invalid_operation": "Invalid operation. Please try again by entering 1, 2, 3, or 4.",
+"result": "The result is: {output}",
+"try_again": "Try another calculation? Yes or no."
+}
+

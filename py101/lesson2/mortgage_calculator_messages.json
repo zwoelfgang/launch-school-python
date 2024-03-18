@@ -1,0 +1,11 @@
+{
+"welcome": "Welcome to mortgage calculator!",
+"principal": "Please enter the principal of your mortgage.",
+"prompt": ">> ",
+"apr": "Please enter the annual percentage rate (APR).",
+"loan_duration": "Please enter the loan duration in years.",
+"invalid_number": "The number you have entered is invalid. Please try again using positive whole numbers or decimals only.",
+"monthly_payment": "The monthly payment on your mortgage is: ${payment}",
+"try_again": "Would you like to calculate another mortgage payment? (Y)es or (n)o.",
+"invalid_answer": "Sorry, that answer is invalid. Please enter (y)es or (n)o."
+}

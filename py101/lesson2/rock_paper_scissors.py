@@ -97,10 +97,9 @@ def check_answer(string):
 def determine_winner(player, computer):
     if computer in WINNING_MOVES[player]:
         return 'player'
-    elif player in WINNING_MOVES[computer]:
+    if player in WINNING_MOVES[computer]:
         return 'computer'
-    else:
-        return None
+    return None
 
 def display_winner(won, player, computer):
     if won in ['player', 'computer']:
@@ -128,6 +127,11 @@ def clear_screen():
         os.system('clear')
 
 def game_loop(player_score, computer_score, num_games):
+    winner = ''
+    map_choice = {}
+    key_choice = ''
+    choice_comp = ''
+
     while player_score < TOTAL_GAMES and computer_score < TOTAL_GAMES:
         clear_screen()
 
@@ -148,7 +152,7 @@ def game_loop(player_score, computer_score, num_games):
                                                        computer_score)
 
         num_games += 1
-    
+
     return winner, \
            map_choice[key_choice], \
            choice_comp, \

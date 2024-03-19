@@ -170,4 +170,5 @@ while True:
         player_score = 0
         computer_score = 0
     elif answer[0] == 'n':
+        os.system('clear')
         break

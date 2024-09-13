@@ -137,6 +137,7 @@ def minimax(board, scores, square, depth, current_player, player_marker, compute
                 current_player = choose_next_square(board, sq, current_player, player_marker, computer_marker)
                 score = max(score, *minimax(board, scores, square, depth + 1, current_player, player_marker, computer_marker)[square])
                 board[sq] = INITIAL_MARKER
+                scores[square].append(score)
     else:
         score = float('inf')
         for sq in board.keys():
@@ -144,6 +145,7 @@ def minimax(board, scores, square, depth, current_player, player_marker, compute
                 current_player = choose_next_square(board, sq, current_player, player_marker, computer_marker)
                 score = min(score, *minimax(board, scores, square, depth + 1, current_player, player_marker, computer_marker)[square])
                 board[sq] = INITIAL_MARKER
+                scores[square].append(score)
     return scores
     
 def best_move(board, current_player, player_marker, computer_marker):

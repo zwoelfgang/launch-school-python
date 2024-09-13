@@ -1,5 +1,4 @@
 import os
-import pdb
 
 INITIAL_MARKER = ' '
 X_MARKER = 'X'
